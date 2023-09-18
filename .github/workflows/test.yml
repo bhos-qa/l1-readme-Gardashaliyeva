@@ -1,7 +1,7 @@
 name: Test README.md file
 
 on:
-  pull_requests:
+  pull_request:
     branches:
       - develop
 
@@ -15,16 +15,16 @@ jobs:
       - name: Check the current branch name
         shell: bash
         run: |
-          bash ${GITHUB_ACTION_PATH}/scripts/validate_branch.sh "$CURRENT_BRANCH"
+          bash scripts/validate_branch.sh "$CURRENT_BRANCH"
         env:
           CURRENT_BRANCH: ${{ github.head_ref }}
 
       - name: Checkout repo
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Check README.md file
         shell: bash
         run: |
-          bash ${GITHUB_ACTION_PATH}/scripts/validate_file.sh "$FILE_NAME"
+          bash scripts/validate_file.sh "$FILE_NAME"
         env:
           FILE_NAME: README.md
